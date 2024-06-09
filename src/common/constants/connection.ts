@@ -1,0 +1,1 @@
+export const connection: Connection = {    CONNECTION_STRING: 'CONNECTION_STRING',    DB: 'POSTGRESQL',    DBNAME: 'POSTGRESQL',}export type Connection = {    CONNECTION_STRING: string,    DBNAME: string,    DB: string}
