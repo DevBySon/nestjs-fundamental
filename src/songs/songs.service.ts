@@ -1,13 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Scope } from '@nestjs/common';
 
-@Injectable()
+@Injectable({
+    scope: Scope.TRANSIENT
+})
 export class SongsService {
-    private readonly song = [];
+    private readonly songs = [];
     create(song) {
-        this.song.push(song);
+        this.songs.push(song);
+        return 'Song has been created'
     }
     findAll() {
-        throw new Error("No songs found");
-        // return this.song;
+        // throw new Error("No songs found");
+        return this.songs;
     }
 }

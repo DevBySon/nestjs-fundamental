@@ -9,13 +9,14 @@ import {
     Param,
     ParseIntPipe,
     Post,
-    Put
+    Put,
+    Scope
 } from '@nestjs/common';
 import {SongsService} from "./songs.service";
 import {CreateSongDto} from "./dto/create-song-dto";
 import {Connection} from "../common/constants/connection";
 
-@Controller('songs')
+@Controller({path: 'songs', scope: Scope.REQUEST})
 export class SongsController {
     constructor(private songsService: SongsService, @Inject('CONNECTION') private connection: Connection) {
         console.log(`This is connection string ${this.connection}`)
@@ -41,7 +42,7 @@ export class SongsController {
         @Param("id", new ParseIntPipe({errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE}))
             id: number
     ) {
-        return 'Fetch song with id #' + this.connection;
+        return 'Fetch song with id #' + id;
     }
 
     @Put(":id")
