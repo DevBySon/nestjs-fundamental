@@ -18,24 +18,30 @@ import {Connection} from "../common/constants/connection";
 
 @Controller({path: 'songs', scope: Scope.REQUEST})
 export class SongsController {
-    constructor(private songsService: SongsService, @Inject('CONNECTION') private connection: Connection) {
-        console.log(`This is connection string ${this.connection}`)
-    }
+  constructor(
+    private songsService: SongsService,
+    @Inject('CONNECTION') private connection: Connection,
+  ) {
+    console.log(`This is connection string ${this.connection}`);
+  }
 
-    @Post()
-    create(@Body() createSongDto: CreateSongDto) {
-        return this.songsService.create(createSongDto)
-    }
+  @Post()
+  create(@Body() createSongDto: CreateSongDto) {
+    return this.songsService.create(createSongDto);
+  }
 
-    @Get()
-    findAll() {
-        try {
-            return this.songsService.findAll()
-        } catch (e) {
-            throw new HttpException("Server error", HttpStatus.INTERNAL_SERVER_ERROR, {cause: e})
-        }
-
+  @Get()
+  findAll() {
+    try {
+      return this.songsService.findAll();
+    } catch (e) {
+      throw new HttpException(
+        'Server error',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+        { cause: e },
+      );
     }
+  }
 
     @Get(':id')
     findOne(
@@ -45,13 +51,13 @@ export class SongsController {
         return 'Fetch song with id #' + id;
     }
 
-    @Put(":id")
-    update() {
-        return 'update song on the based id'
-    }
+  @Put(':id')
+  update() {
+    return 'update song on the based id';
+  }
 
-    @Delete(":id")
-    delete() {
-        return 'delete song on the based id'
-    }
+  @Delete(':id')
+  delete() {
+    return 'delete song on the based id';
+  }
 }

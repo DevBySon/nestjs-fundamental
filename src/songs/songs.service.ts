@@ -1,7 +1,7 @@
 import { Injectable, Scope } from '@nestjs/common';
 
 @Injectable({
-    scope: Scope.TRANSIENT
+  scope: Scope.TRANSIENT,
 })
 export class SongsService {
     private readonly songs = [];
